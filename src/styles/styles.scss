@@ -1,0 +1,85 @@
+@import "./variables.scss";
+
+html, body, body div, span, object, iframe,
+// h1, h2, h3, h4, h5, h6,
+p, blockquote,
+pre,
+abbr,
+ address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, menu, nav, section, time, mark, audio, video, details, summary {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font-weight: normal;
+	vertical-align: baseline;
+	background: transparent;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  position: relative;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.container > header {
+  position: sticky;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  background: white;
+  height: $header-height;
+  padding: 0 0.5rem;
+  box-shadow: 1px 1px 3px rgba(black, 0.1);
+}
+
+.container > footer {
+  height: $footer-height;
+  background: $dark-blue;
+}
+
+main {
+  min-height: calc(100% - #{$header-height + $footer-height});
+}
+
+.api-endpoint {
+  width: 200px;
+  height: 200px;
+  border-radius: 0.5rem;
+  background-color: rgba(black, 0.1);
+  margin: 0.1rem;
+}
+
+
