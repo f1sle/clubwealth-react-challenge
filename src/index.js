@@ -1,33 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./components/layout/Layout";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
+import Layout from './routes/layout';
+import Index from './routes/index';
 import Cats from "./routes/cats";
 import Users from "./routes/users";
+import Page404 from "./routes/404";
+
 import "./styles/styles.scss";
 
-const App = () => {
-  return (
-    <Layout>
-      <h1>React Coding Challenge</h1>
-      <h2>Choose your API</h2>
-      <section>
-        <div className="api-endpoint"></div>
-        <div className="api-endpoint"></div>
-        <div className="api-endpoint"></div>
-        <div className="api-endpoint"></div>
-        <div className="api-endpoint"></div>
-        <div className="api-endpoint"></div>
-      </section>
-    </Layout>
-  );
-};
+
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<App />}>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Index />} />
         <Route path="/users" element={<Users />} />
         <Route path="/cats" element={<Cats />} />
+        <Route path="*" element={<Page404 />} 
+        />
       </Route>
     </Routes>
   </BrowserRouter>,

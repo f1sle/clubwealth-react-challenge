@@ -1,0 +1,76 @@
+@import "../../styles/variables";
+
+.button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.25rem;
+  margin: 0.25rem;
+  font-size: smaller;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  &:disabled {
+    cursor: not-allowed;
+  }
+  &_primary, &_secondary {
+    @extend .button;
+    border: 0.1rem solid $primary-color;
+    transition: all $default-transition-time ease-in;
+  }
+  &_primary {
+    color: white;
+    background-color: $primary-color;
+    &:hover:not(:disabled) {
+      color: white;
+      border: 0.1rem solid $secondary-color;
+      background-color: $secondary-color;
+    }
+    &:active:not(:disabled) {
+      color: $primary-color;
+      background-color: white;
+      border: 0.1rem solid $primary-color;
+    }
+  }
+  &_secondary {
+    color: $primary-color;
+    background-color: white;
+    &:hover:not(:disabled) {
+      color: $secondary-color;
+      background-color: rgba($primary-color, 0.1);
+      border: 0.1rem solid $secondary-color;
+    }
+    &:active:not(:disabled) {
+      color: white;
+      background-color: $primary-color;
+      border: 0.1rem solid $primary-color;
+    }
+  }
+  &_action {
+    @extend .button;    
+    color: rgba($default-font-color, 0.5);
+    border: none;
+    background-color: transparent;
+    &:hover {
+      color: $default-font-color;
+    }
+    &_remove {
+      @extend .button_action;
+      &:hover {
+        color: red;
+      }
+    }
+    
+  }
+}
+
+@media (min-width: 1024px) {
+  .button {
+    width: 2rem;
+    height: 2rem;
+    font-size: medium;
+  }
+}

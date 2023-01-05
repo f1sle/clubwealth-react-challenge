@@ -1,0 +1,16 @@
+.textAlignCenter {
+  text-align: center;
+}
+
+.posCenter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.centerContent {
+  @extend .posCenter;
+  height: inherit;
+  flex-direction: column;
+}

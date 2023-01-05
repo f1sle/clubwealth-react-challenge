@@ -1,7 +1,9 @@
 @import "./variables.scss";
+@import "./typography";
+@import "./components";
+@import "./helpers";
 
 html, body, body div, span, object, iframe,
-// h1, h2, h3, h4, h5, h6,
 p, blockquote,
 pre,
 abbr,
@@ -10,6 +12,7 @@ abbr,
 	padding: 0;
 	border: 0;
 	font-size: 100%;
+  color: $default-font-color;
 	font-weight: normal;
 	vertical-align: baseline;
 	background: transparent;
@@ -23,14 +26,6 @@ body,
 
 html {
   box-sizing: border-box;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 #root {
@@ -47,39 +42,166 @@ img {
   max-width: 100%;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.container > header {
+#root {
+  header {
   position: sticky;
+  top: 0;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   background: white;
   height: $header-height;
   padding: 0 0.5rem;
   box-shadow: 1px 1px 3px rgba(black, 0.1);
-}
+  z-index: 1;
+  }
 
-.container > footer {
-  height: $footer-height;
-  background: $dark-blue;
+  footer {
+    height: $footer-height;
+    background: $primary-color;
+  }
 }
 
 main {
-  min-height: calc(100% - #{$header-height + $footer-height});
+  height: calc(100% - #{$header-height + $footer-height});
+  overflow-y: auto;
+  .api-page {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .sidebar {
+    flex: 0 0 25%;
+    top: 0;
+    left: 0;
+    height: inherit;
+    background-color: rgba(black, 0.2);
+  }
 }
 
-.api-endpoint {
-  width: 200px;
-  height: 200px;
-  border-radius: 0.5rem;
-  background-color: rgba(black, 0.1);
-  margin: 0.1rem;
+a {
+  text-decoration: none;
+}
+
+select {
+  height: 1.5rem;
+  border-radius: $border-radius;
+  border: $border-thickness solid $primary-color;
+  font-weight: bold;
+  height: inherit;
+  cursor: pointer;
+}
+
+.table-container {
+  padding: 0.3rem;
+  overflow: auto;
+  table {
+    width: 100%;
+    height: 100%;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    border-radius: $border-radius;
+    thead {
+      tr {
+        border: 1px solid $default-font-color;
+        th {
+          padding: 0.5rem;
+          text-align: start;
+          font-size: 1.2rem;
+          font-weight: bold;
+          
+        }
+      }
+    }
+    tbody {
+      border-bottom: 1px solid $default-font-color;
+      tr {
+        border-bottom: 1px solid $default-font-color;
+        td {
+          padding: 0.5rem;
+          vertical-align:middle;
+          img {
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+  }
+}
+
+#main-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  
+  .apis-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    .api-endpoint {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      border: 0.1rem solid rgba($primary-color, 0.3);
+      border-radius: 0.5rem;
+      padding: 0.5rem;
+      margin: 1rem;
+      figcaption {
+        position: absolute;
+        font-weight: bold;
+        bottom: 1rem;
+      }
+      &:hover {
+        background-color: rgba($primary-color, 0.1);
+        border: $border-thickness solid rgba($primary-color, 0.5);
+        transition: all $default-transition-time ease-in;
+        figcaption {
+          transform: translateX(70px);
+          transition: transform 0.3s ease-in-out;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 640px) {
+  #main-page {
+    .apis-container {
+      .api-endpoint {
+        width: 250px;
+        height: 250px;
+      }      
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  select {
+    height: 2rem;
+  }
+
+  #main-page {
+    .apis-container {
+      .api-endpoint {
+        width: 300px;
+        height: 300px;
+      }      
+    }
+  }
 }
 
 
+@media (min-width: 1280px) {
+  main {
+    padding: 0;
+    .api-page {
+      flex-direction: row;
+    }
+  }
+}
